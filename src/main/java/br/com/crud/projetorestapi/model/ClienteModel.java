@@ -24,6 +24,21 @@ public class ClienteModel {
     @Column(nullable = false, length = 60)
     public String cidade;
 
+    //Construtor
+    public ClienteModel(String nome, String contato, String cpfCNPJ, String rgIE, String email, String logradouro, String bairro, String cidade) {
+        this.nome = nome;
+        this.contato = contato;
+        this.cpfCNPJ = cpfCNPJ;
+        this.rgIE = rgIE;
+        this.email = email;
+        this.logradouro = logradouro;
+        this.bairro = bairro;
+        this.cidade = cidade;
+    }
+
+    //Get and Setter
+    public ClienteModel() {
+    }
 
     public Integer getCodigo() {
         return codigo;

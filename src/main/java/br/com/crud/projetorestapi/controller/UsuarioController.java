@@ -1,7 +1,9 @@
 package br.com.crud.projetorestapi.controller;
 
+import br.com.crud.projetorestapi.dto.UsuarioDto;
 import br.com.crud.projetorestapi.model.UsuarioModel;
 import br.com.crud.projetorestapi.repository.UsuarioRepository;
+import br.com.crud.projetorestapi.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,9 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioRepository repository;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     //Lista Usuario Especifico
     @GetMapping(path = "/{codigo}")
@@ -33,17 +38,16 @@ public class UsuarioController {
 
     //Salva usuario
     @PostMapping(path = "/salvar")
-    public UsuarioModel salvar(@RequestBody UsuarioModel usuario) {
-        return repository.save(usuario);
+    public UsuarioModel salvar(@RequestBody UsuarioDto usuarioDto) {
+        return usuarioService.salvar(usuarioDto);
     }
 
 
     //Alterar Usuario
     @PutMapping(path = "/{codigo}")
-    public void alterar(@RequestBody UsuarioModel usuario) {
-        repository.save(usuario);
+    public UsuarioModel alterar(@RequestBody UsuarioDto usuarioDto) {
+        return usuarioService.alterar(usuarioDto);
     }
-
 
 
     //Deleta Usuario
@@ -51,6 +55,5 @@ public class UsuarioController {
     public void deletar(@PathVariable ("codigo") Integer codigo) {
         repository.deleteById(codigo);
     }
-
 
 }

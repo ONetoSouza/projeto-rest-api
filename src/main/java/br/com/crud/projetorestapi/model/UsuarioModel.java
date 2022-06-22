@@ -16,6 +16,13 @@ public class UsuarioModel {
     @Column(nullable = false, length = 10)
     public String senha;
 
+    public UsuarioModel( String nome, String login, String senha) {
+        this.nome = nome;
+        this.login = login;
+        this.senha = senha;
+    }
+    public UsuarioModel() {
+    }
 
     //Poderia ser utilizado o @Data do Lombook, possivel melhoria a ser feita.
     public Integer getCodigo() {
